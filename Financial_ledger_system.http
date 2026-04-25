@@ -1,0 +1,6 @@
+@Financial_ledger_system_HostAddress = http://localhost:5025
+
+GET {{Financial_ledger_system_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
