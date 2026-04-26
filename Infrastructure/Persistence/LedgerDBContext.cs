@@ -1,0 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
+public class LedgerDbContext: DbContext
+{
+    public DbSet<Account> Accounts{get; set;}
+    public DbSet<LedgerEntry> LedgerEntries{get; set;}
+    public DbSet<JournalEntry> JournalEntries{get; set;}
+
+    public LedgerDbContext(DbContextOptions <LedgerDbContext> options
+
+    )    :base(options) {}
+}
