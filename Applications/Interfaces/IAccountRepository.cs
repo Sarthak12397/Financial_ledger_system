@@ -1,7 +1,7 @@
 public interface IAccountRepository
 {
     
-    Task<Account?> GetByIdAsync   (Guid id, CancellationToken ct = default);
+    Task<Account?> GetByIdAsync(Guid id, CancellationToken ct = default);
 
   Task CreateAsync(Account account, CancellationToken ct = default);
 
