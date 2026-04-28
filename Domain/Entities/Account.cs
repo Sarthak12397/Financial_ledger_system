@@ -8,7 +8,7 @@ public class Account
     {
         get; private set;
     }
-    public AccountType AccountTypes
+    public AccountType AccountType
     {
         get; private set;
     }
@@ -29,15 +29,25 @@ public class Account
     {
         get; private set;
     }
+    public byte[] RowVersion { get; private set; }
 
- public Account(Guid id, string name, AccountType accountTypes, string currency, decimal balance, DateTime createdAt, bool isactive)
-{
-    Id = id;
-    Name = name;
-    AccountTypes = accountTypes;
-    Currency = currency;
-    Balance = balance;
-    CreatedAt = createdAt;
-    IsActive = isactive;
-}
+
+private Account()
+    {
+        
+    }
+    public static Account Create(string name, AccountType accounttype, string currency)
+    {
+        return new Account{
+         Id = Guid.NewGuid(),
+         Name = name,
+         AccountType = accounttype,
+         Currency = currency,
+         Balance = 0m,
+         CreatedAt = DateTime.UtcNow,
+         IsActive = true
+        };
+    }
+        public void Deactivate() => IsActive = false;
+
 }

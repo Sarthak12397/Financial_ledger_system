@@ -6,7 +6,7 @@ public class LedgerEntry
 
     public Guid AccountId{get; private set;}
     public EntryType Entrytype{get; private set;}
-    public Decimal Amount{get; private set;}
+    public decimal Amount{get; private set;}
     public string Description{get; private set;}
     public DateTime CreatedAt{get; private set;}
 
@@ -16,16 +16,19 @@ public class LedgerEntry
         
     }
 
-    public static LedgerEntry Create(Guid accountid, string description, EntryType entrytypes  )
+    public static LedgerEntry Create(Guid accountid, Guid journalentryid, decimal amount, string description, EntryType entrytypes  )
 
     {
+            if (amount <= 0)
+        throw new ArgumentException("Amount must be positive.");
      return new LedgerEntry
      {
+        
          Id = Guid.NewGuid(),
          AccountId = accountid,
-         JournalEntryId = Guid.NewGuid(),
+         JournalEntryId = journalentryid,
          Entrytype = entrytypes,
-         Amount = 0m,
+         Amount = amount,
          Description = description,
          CreatedAt = DateTime.UtcNow
 
