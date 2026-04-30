@@ -7,6 +7,7 @@ public class JournalEntry
     public IReadOnlyList<LedgerEntry> Entries{get; private set;}
 
     public string IdempotencyKey{get; private set;}
+public PostingStatus Status { get; private set; }
 
 
 
@@ -33,8 +34,12 @@ var sum = entry.Sum(e => e.Entrytype == EntryType.Debit
             Description = description,
             CreatedAt = DateTime.UtcNow,
             Entries = entry.AsReadOnly(),
-            IdempotencyKey = idempotencyKey
+            IdempotencyKey = idempotencyKey,
+            Status = PostingStatus.Draft
+
         };
         
     }
+    public void MarkPosted() => Status = PostingStatus.Posted;
+public void MarkFailed() => Status = PostingStatus.Failed;
 }

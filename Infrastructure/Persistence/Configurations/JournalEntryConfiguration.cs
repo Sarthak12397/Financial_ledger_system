@@ -20,6 +20,8 @@ public class JournalEntryConfiguration:IEntityTypeConfiguration<JournalEntry>
 
 builder.HasIndex(x => x.IdempotencyKey)
     .IsUnique();
+    builder.Property(x => x.Status).HasConversion<string>();
+
     }
 
 }

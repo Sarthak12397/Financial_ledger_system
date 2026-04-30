@@ -5,4 +5,6 @@ public interface ILedgerRepository
          Task CreateJournalEntryAsync(JournalEntry entry, CancellationToken ct = default); 
 
 
+    Task<JournalEntry?> GetByIdempotencyKeyAsync(string key, CancellationToken ct = default);
+
 }

@@ -29,6 +29,11 @@ public class LedgerRepository: ILedgerRepository
 
     }
 
+            public async Task <JournalEntry?> GetByIdempotencyKeyAsync(string key, CancellationToken ct = default){
+                return await _context.JournalEntries.Include(x => x.Entries).FirstOrDefaultAsync(x => x.IdempotencyKey  == key, ct);
+            }
+
+
 
 
 

@@ -50,4 +50,22 @@ private Account()
     }
         public void Deactivate() => IsActive = false;
 
+        public void Debit(decimal amount)
+    {
+        if (amount <= 0)
+        {
+            throw new Exception("Debit not fullfilled");
+        }
+        Balance -= amount;
+    }
+
+    public void Credit(decimal amount)
+    {
+        if(amount <= 0)
+        {
+            throw new Exception("Balance");
+        }
+        Balance += amount;
+    }
+
 }
