@@ -182,5 +182,3 @@ Hangfire dashboard: http://localhost:5025/hangfire
 | Rate limiting | Prevent API abuse | High | High |
 
 
-}
-```
