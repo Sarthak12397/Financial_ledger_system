@@ -40,7 +40,10 @@ var entries = requests.Select(r =>
     .ToList();
 
 var journal = JournalEntry.Create(descripition, idempotencykey, entries);
-
+foreach (var entry in entries)
+{
+    entry.SetJournalEntryId(journal.Id);
+}
 foreach (var request in requests)
 {
     var account = await _accounts.GetByIdAsync(request.AccountId, ct);

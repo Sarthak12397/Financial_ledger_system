@@ -19,7 +19,6 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             builder.Property(x => x.Balance).HasColumnType("decimal(18,4)");
             builder.Property(x => x.CreatedAt).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();
-            builder.Property(x => x.RowVersion).IsRowVersion();
 
 
             

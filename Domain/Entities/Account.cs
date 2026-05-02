@@ -1,3 +1,5 @@
+
+
 public class Account
 {
     public Guid Id
@@ -29,7 +31,6 @@ public class Account
     {
         get; private set;
     }
-    public byte[] RowVersion { get; private set; }
 
 
 private Account()

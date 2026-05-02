@@ -26,7 +26,16 @@ public class BalanceService
     }
         public async Task VerifyAllBalancesAsync(CancellationToken ct = default)
     {
-     
+     var accounts = await _accounts.GetAllAsync(ct);
+     foreach(var account in accounts)
+        {
+            var computed = await GetBalanceAsync(account.Id, ct);
+            if(account.Balance != computed)
+            {
+        Console.WriteLine($"MISMATCH: Account {account.Id} stored={account.Balance} computed={computed}");
+            }
+        }
+
     }
 
 }

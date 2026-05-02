@@ -5,5 +5,6 @@ public record LedgerEntryRequest(
     string Description,
     string currency,
     EntryType EntryType
+    
 
 );

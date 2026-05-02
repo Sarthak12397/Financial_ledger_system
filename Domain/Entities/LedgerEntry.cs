@@ -16,6 +16,11 @@ public class LedgerEntry
         
     }
 
+    public void SetJournalEntryId(Guid journalEntryId)
+{
+    JournalEntryId = journalEntryId;
+}
+
     public static LedgerEntry Create(Guid accountid, Guid journalentryid, decimal amount, string description, EntryType entrytypes  )
 
     {
