@@ -81,5 +81,106 @@ POST /api/ledger
   "status": "Posted",
   "entries": [...],
   "idempotencyKey": "payment-001"
+
+
+```
+
+### 3. Check Balance
+
+GET /api/balance/{accountId}
+
+→ Balance computed live from LedgerEntries
+
+→ Never from a stored number that can lie
+
+## Invariant Enforcement
+
+| Rule | Enforcement |
+|------|-------------|
+| Debits must equal credits | Domain entity throws if sum ≠ 0 |
+| No zero or negative amounts | Guard clause in LedgerEntry.Create() |
+| Minimum 2 entries per journal | Guard clause in JournalEntry.Create() |
+| Currency must match account | Validated in JournalEntryService |
+| No duplicate requests | Unique index on IdempotencyKey |
+
+
+## Architecture Diagram
+
+<img width="5553" height="1956" alt="mermaid-diagram (6)" src="https://github.com/user-attachments/assets/5a9dc270-7d62-4803-9710-06369ced4a5a" />
+
+
+## How to Run
+
+### With Docker (recommended):
+
+```bash
+git clone https://github.com/Sarthak12397/Financial_ledger_system.git
+cd Financial_ledger_system
+docker-compose up --build
+```
+
+API runs on http://localhost:8080
+
+### Without Docker:
+
+```bash
+git clone https://github.com/Sarthak12397/Financial_ledger_system.git
+cd Financial_ledger_system
+```
+
+Configure `appsettings.json` with your PostgreSQL connection string.
+
+```bash
+dotnet restore
+dotnet build
+dotnet ef database update
+dotnet run
+```
+
+API runs on http://localhost:5025
+
+Hangfire dashboard: http://localhost:5025/hangfire
+
+
+## API Endpoints
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/api/accounts` | Create account |
+| GET | `/api/accounts` | Get all accounts |
+| GET | `/api/accounts/{id}` | Get account by ID |
+| DELETE | `/api/accounts/{id}` | Deactivate account |
+| POST | `/api/ledger` | Post a journal entry |
+| GET | `/api/ledger/{id}` | Get journal entry by ID |
+| GET | `/api/ledger/account/{accountId}` | Get entries for account |
+| GET | `/api/balance/{accountId}` | Get computed balance |
+
+
+## Design Decisions
+
+| Decision | Why |
+|----------|-----|
+| Double-entry bookkeeping | 800 year old rule — every debit has a credit |
+| Immutable ledger entries | No UPDATE ever — history cannot be rewritten |
+| Idempotency keys | Same request, same result — no duplicate money movement |
+| Balance computed from entries | Stored balance can lie — ledger entries cannot |
+| PostingStatus state machine | System always knows if a journal succeeded or failed |
+| Atomic transaction boundary | All or nothing — partial writes are impossible |
+| Correlation IDs | Full traceability across requests and retries |
+| Hangfire | Scheduled balance verification survives restarts |
+
+
+## What I'd Improve
+
+| Improvement | Reason | Impact | Priority |
+|-------------|--------|--------|----------|
+| Composite idempotency key (ClientId + Key) | Prevent cross-client key collisions | High | High |
+| Reversal journal entries | Correct mistakes without mutating history | High | High |
+| JWT Authentication | Secure endpoints — only authenticated users post entries | High | High |
+| Pagination on ledger queries | GetByAccountIdAsync unusable at scale | Medium | Medium |
+| OpenTelemetry | Distributed tracing beyond single-service correlation IDs | Medium | Medium |
+| Rate limiting | Prevent API abuse | High | High |
+
+
 }
 ```
