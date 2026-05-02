@@ -1,3 +1,5 @@
+
+
 public class Account
 {
     public Guid Id
@@ -8,7 +10,7 @@ public class Account
     {
         get; private set;
     }
-    public AccountType AccountTypes
+    public AccountType AccountType
     {
         get; private set;
     }
@@ -30,14 +32,41 @@ public class Account
         get; private set;
     }
 
- public Account(Guid id, string name, AccountType accountTypes, string currency, decimal balance, DateTime createdAt, bool isactive)
-{
-    Id = id;
-    Name = name;
-    AccountTypes = accountTypes;
-    Currency = currency;
-    Balance = balance;
-    CreatedAt = createdAt;
-    IsActive = isactive;
-}
+
+private Account()
+    {
+        
+    }
+    public static Account Create(string name, AccountType accounttype, string currency)
+    {
+        return new Account{
+         Id = Guid.NewGuid(),
+         Name = name,
+         AccountType = accounttype,
+         Currency = currency,
+         Balance = 0m,
+         CreatedAt = DateTime.UtcNow,
+         IsActive = true
+        };
+    }
+        public void Deactivate() => IsActive = false;
+
+        public void Debit(decimal amount)
+    {
+        if (amount <= 0)
+        {
+            throw new Exception("Debit not fullfilled");
+        }
+        Balance -= amount;
+    }
+
+    public void Credit(decimal amount)
+    {
+        if(amount <= 0)
+        {
+            throw new Exception("Balance");
+        }
+        Balance += amount;
+    }
+
 }

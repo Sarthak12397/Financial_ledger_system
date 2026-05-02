@@ -1,0 +1,211 @@
+[08:01:15 INF] [] Start installing Hangfire SQL objects...
+[08:01:15 INF] [] Hangfire SQL objects installed.
+[08:01:16 INF] [] Now listening on: http://localhost:5025
+[08:01:16 INF] [] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: ledgerdb, Schema: hangfire'
+[08:01:16 INF] [] Using the following options for PostgreSQL job storage:
+[08:01:16 INF] []     Queue poll interval: 00:00:15.
+[08:01:16 INF] []     Invisibility timeout: 00:30:00.
+[08:01:16 INF] []     Use sliding invisibility timeout: False.
+[08:01:16 INF] [] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+[08:01:16 INF] [] Application started. Press Ctrl+C to shut down.
+[08:01:16 INF] [] Hosting environment: Development
+[08:01:16 INF] [] Content root path: D:\Final_Projects\Financial_ledger_system
+[08:01:16 INF] [] Server msi:6268:1e5cec61 successfully announced in 14.6786 ms
+[08:01:16 INF] [] Server msi:6268:1e5cec61 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+[08:01:16 INF] [] Server msi:6268:1e5cec61 all the dispatchers started
+[08:01:17 INF] [] Balance verification started at "2026-05-02T02:16:17.9800133Z"
+[08:01:18 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 553
+[08:01:18 INF] [] No correlation ID was found in the request headers
+[08:01:18 WRN] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Failed to determine the https port for redirect.
+[08:01:18 INF] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[08:01:18 INF] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[08:01:18 WRN] [] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[08:01:19 INF] [] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[08:01:19 INF] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Executed DbCommand (18ms) [Parameters=[@key='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j0."Id", j0."CreatedAt", j0."Description", j0."IdempotencyKey", j0."Status", l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM (
+    SELECT j."Id", j."CreatedAt", j."Description", j."IdempotencyKey", j."Status"
+    FROM journal_entries AS j
+    WHERE j."IdempotencyKey" = @key
+    LIMIT 1
+) AS j0
+LEFT JOIN ledger_entries AS l ON j0."Id" = l."JournalEntryId1"
+ORDER BY j0."Id"
+[08:01:19 INF] [] Executed DbCommand (6ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[08:01:19 INF] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Executing CreatedResult, writing value of type 'JournalEntry'.
+[08:01:19 INF] [] Executed DbCommand (6ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[08:01:19 INF] [] Balance verification completed at "2026-05-02T02:16:19.8629989Z"
+[08:01:19 INF] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Executed action LedgerController.Post (Financial_ledger_system) in 1431.897ms
+[08:01:19 INF] [6513fd45-e7d4-42b4-9299-e2b8beb6ac1a] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[08:01:19 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 201 null application/json; charset=utf-8 1603.9151ms
+[08:03:02 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - null null
+[08:03:02 INF] [] No correlation ID was found in the request headers
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Executing endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Route matched with {action = "GetByBalanceId", controller = "Balance"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetByBalanceId(System.Guid, System.Threading.CancellationToken) on controller BalanceController (Financial_ledger_system).
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Executed DbCommand (2ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Executed DbCommand (4ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Executing OkObjectResult, writing value of type 'AccountBalanceDto'.
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Executed action BalanceController.GetByBalanceId (Financial_ledger_system) in 183.5377ms
+[08:03:02 INF] [126d39bf-755f-49d3-8633-6bf16d0f383a] Executed endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[08:03:02 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - 200 null application/json; charset=utf-8 301.2074ms
+[08:03:29 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7
+ - null null
+[08:03:29 INF] [] No correlation ID was found in the request headers
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Executing endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Route matched with {action = "GetByBalanceId", controller = "Balance"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetByBalanceId(System.Guid, System.Threading.CancellationToken) on controller BalanceController (Financial_ledger_system).
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Executed DbCommand (4ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Executed DbCommand (6ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Executing OkObjectResult, writing value of type 'AccountBalanceDto'.
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Executed action BalanceController.GetByBalanceId (Financial_ledger_system) in 98.2085ms
+[08:03:29 INF] [68ff09fd-45f6-4689-8476-4a205fd9c056] Executed endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[08:03:29 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7
+ - 200 null application/json; charset=utf-8 418.6569ms
+[08:03:48 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - null null
+[08:03:48 INF] [] No correlation ID was found in the request headers
+[08:03:48 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 147.906ms
+[08:03:48 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:03:54 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - null null
+[08:03:54 INF] [] No correlation ID was found in the request headers
+[08:03:54 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 189.6135ms
+[08:03:54 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:04:23 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/accounts
+ - application/json 553
+[08:04:23 INF] [] No correlation ID was found in the request headers
+[08:04:23 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/accounts
+ - 404 0 null 197.5967ms
+[08:04:23 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:05:43 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/accounts/
+ - application/json 553
+[08:05:43 INF] [] No correlation ID was found in the request headers
+[08:05:43 INF] [1d44a286-bb37-4707-8e1f-c70255017683] Executing endpoint '405 HTTP Method Not Supported'
+[08:05:43 INF] [1d44a286-bb37-4707-8e1f-c70255017683] Executed endpoint '405 HTTP Method Not Supported'
+[08:05:43 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/accounts/
+ - 405 0 null 214.442ms
+[08:06:16 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts/
+ - application/json 553
+[08:06:16 INF] [] No correlation ID was found in the request headers
+[08:06:16 INF] [546ccd83-f49e-41a5-8c5a-407c5a8cb38f] Executing endpoint 'AccountsController.GetById (Financial_ledger_system)'
+[08:06:16 INF] [546ccd83-f49e-41a5-8c5a-407c5a8cb38f] Route matched with {action = "GetById", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetById(System.Guid) on controller AccountsController (Financial_ledger_system).
+[08:06:16 INF] [546ccd83-f49e-41a5-8c5a-407c5a8cb38f] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[08:06:16 INF] [546ccd83-f49e-41a5-8c5a-407c5a8cb38f] Executed action AccountsController.GetById (Financial_ledger_system) in 62.7353ms
+[08:06:16 INF] [546ccd83-f49e-41a5-8c5a-407c5a8cb38f] Executed endpoint 'AccountsController.GetById (Financial_ledger_system)'
+[08:06:16 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts/
+ - 400 null application/problem+json; charset=utf-8 188.281ms
+[08:06:22 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - application/json 553
+[08:06:22 INF] [] No correlation ID was found in the request headers
+[08:06:22 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 125.7921ms
+[08:06:22 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:06:34 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - null null
+[08:06:34 INF] [] No correlation ID was found in the request headers
+[08:06:34 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 192.4145ms
+[08:06:34 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:07:03 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - null null
+[08:07:04 INF] [] No correlation ID was found in the request headers
+[08:07:04 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 213.0104ms
+[08:07:04 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:07:15 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - application/json 553
+[08:07:15 INF] [] No correlation ID was found in the request headers
+[08:07:15 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 163.9128ms
+[08:07:15 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:08:14 INF] [] Server msi:6268:1e5cec61 caught stopping signal...
+[08:08:14 INF] [] Application is shutting down...
+[08:08:14 INF] [] Server msi:6268:1e5cec61 All dispatchers stopped
+[08:08:14 INF] [] Server msi:6268:1e5cec61 successfully reported itself as stopped in 13.7312 ms
+[08:08:14 INF] [] Server msi:6268:1e5cec61 has been stopped in total 61.1948 ms
+[08:08:20 INF] [] Start installing Hangfire SQL objects...
+[08:08:20 INF] [] Hangfire SQL objects installed.
+[08:08:20 INF] [] Now listening on: http://localhost:5025
+[08:08:20 INF] [] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: ledgerdb, Schema: hangfire'
+[08:08:20 INF] [] Using the following options for PostgreSQL job storage:
+[08:08:20 INF] []     Queue poll interval: 00:00:15.
+[08:08:20 INF] []     Invisibility timeout: 00:30:00.
+[08:08:20 INF] []     Use sliding invisibility timeout: False.
+[08:08:20 INF] [] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+[08:08:20 INF] [] Application started. Press Ctrl+C to shut down.
+[08:08:20 INF] [] Hosting environment: Development
+[08:08:20 INF] [] Content root path: D:\Final_Projects\Financial_ledger_system
+[08:08:20 INF] [] Server msi:444:e2245f47 successfully announced in 16.9435 ms
+[08:08:20 INF] [] Server msi:444:e2245f47 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+[08:08:20 INF] [] Server msi:444:e2245f47 all the dispatchers started
+[08:08:23 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - application/json 553
+[08:08:23 INF] [] No correlation ID was found in the request headers
+[08:08:23 WRN] [e2b408d1-19c0-4a1a-bc72-db016416b0e4] Failed to determine the https port for redirect.
+[08:08:23 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 117.6751ms
+[08:08:23 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:08:32 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - application/json 553
+[08:08:33 INF] [] No correlation ID was found in the request headers
+[08:08:33 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 10.8367ms
+[08:08:33 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:08:38 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts
+ - null null
+[08:08:38 INF] [] No correlation ID was found in the request headers
+[08:08:38 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts
+ - 404 0 null 26.9906ms
+[08:08:38 INF] [] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5025/api/accounts%0A, Response status code: 404
+[08:08:46 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts - null null
+[08:08:46 INF] [] No correlation ID was found in the request headers
+[08:08:46 INF] [26d58ee9-74f3-4791-be1a-a1d599541367] Executing endpoint 'AccountsController.GetAllAsync (Financial_ledger_system)'
+[08:08:46 INF] [26d58ee9-74f3-4791-be1a-a1d599541367] Route matched with {action = "GetAll", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllAsync() on controller AccountsController (Financial_ledger_system).
+[08:08:47 WRN] [26d58ee9-74f3-4791-be1a-a1d599541367] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[08:08:48 INF] [26d58ee9-74f3-4791-be1a-a1d599541367] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[08:08:48 INF] [26d58ee9-74f3-4791-be1a-a1d599541367] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Account, Financial_ledger_system, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[08:08:48 INF] [26d58ee9-74f3-4791-be1a-a1d599541367] Executed action AccountsController.GetAllAsync (Financial_ledger_system) in 1145.9583ms
+[08:08:48 INF] [26d58ee9-74f3-4791-be1a-a1d599541367] Executed endpoint 'AccountsController.GetAllAsync (Financial_ledger_system)'
+[08:08:48 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts - 200 null application/json; charset=utf-8 1321.9916ms
+[08:09:22 INF] [] Server msi:444:e2245f47 caught stopping signal...
+[08:09:22 INF] [] Application is shutting down...
+[08:09:22 INF] [] Server msi:444:e2245f47 All dispatchers stopped
+[08:09:22 INF] [] Server msi:444:e2245f47 successfully reported itself as stopped in 12.9944 ms
+[08:09:22 INF] [] Server msi:444:e2245f47 has been stopped in total 34.053 ms

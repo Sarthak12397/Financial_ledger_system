@@ -6,21 +6,25 @@ public class JournalEntry
     public DateTime CreatedAt{get; private set;}
     public IReadOnlyList<LedgerEntry> Entries{get; private set;}
 
+    public string IdempotencyKey{get; private set;}
+public PostingStatus Status { get; private set; }
+
 
 
     private JournalEntry(){}
-    public static JournalEntry Create(string description, List<LedgerEntry> entry)
+    public static JournalEntry Create(string description, string idempotencyKey, List<LedgerEntry> entry)
       
     {
+                if (entry == null || entry.Count < 2)
+    throw new ArgumentException("Journal entry requires at least 2 ledger entries.");
              // Invariant
 var sum = entry.Sum(e => e.Entrytype == EntryType.Debit 
     ? e.Amount 
     : -e.Amount);   
       if (sum != 0)
-       throw new InvalidOperationException("Ledger invariant violated. Debits must equal");
+       throw new InvalidOperationException("Ledger invariant violated. Debits must equal credits");
         
-        if (entry == null || entry.Count < 2)
-    throw new ArgumentException("Journal entry requires at least 2 ledger entries.");
+
         return new JournalEntry
 
         
@@ -29,8 +33,13 @@ var sum = entry.Sum(e => e.Entrytype == EntryType.Debit
             Id = Guid.NewGuid(),
             Description = description,
             CreatedAt = DateTime.UtcNow,
-            Entries = entry.AsReadOnly()
+            Entries = entry.AsReadOnly(),
+            IdempotencyKey = idempotencyKey,
+            Status = PostingStatus.Draft
+
         };
         
     }
+    public void MarkPosted() => Status = PostingStatus.Posted;
+public void MarkFailed() => Status = PostingStatus.Failed;
 }

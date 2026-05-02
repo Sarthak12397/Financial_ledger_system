@@ -1,0 +1,830 @@
+[15:25:07 INF] [] Start installing Hangfire SQL objects...
+[15:25:07 INF] [] Hangfire SQL objects installed.
+[15:25:07 ERR] [] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5025: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[15:27:54 INF] [] Start installing Hangfire SQL objects...
+[15:27:55 INF] [] Hangfire SQL objects installed.
+[15:27:55 INF] [] Now listening on: http://localhost:5025
+[15:27:55 INF] [] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: ledgerdb, Schema: hangfire'
+[15:27:56 INF] [] Using the following options for PostgreSQL job storage:
+[15:27:56 INF] []     Queue poll interval: 00:00:15.
+[15:27:56 INF] []     Invisibility timeout: 00:30:00.
+[15:27:56 INF] []     Use sliding invisibility timeout: False.
+[15:27:56 INF] [] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+[15:27:56 INF] [] Application started. Press Ctrl+C to shut down.
+[15:27:56 INF] [] Hosting environment: Development
+[15:27:56 INF] [] Content root path: D:\Final_Projects\Financial_ledger_system
+[15:27:56 INF] [] Server msi:12432:87111c1f successfully announced in 17.2232 ms
+[15:27:56 INF] [] Server msi:12432:87111c1f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+[15:27:56 INF] [] Server msi:12432:87111c1f all the dispatchers started
+[15:28:01 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/accounts - application/json 85
+[15:28:01 INF] [] No correlation ID was found in the request headers
+[15:28:01 WRN] [033d89d0-3cac-4b53-9583-a372b46ae6ec] Failed to determine the https port for redirect.
+[15:28:01 INF] [033d89d0-3cac-4b53-9583-a372b46ae6ec] Executing endpoint 'AccountsController.Create (Financial_ledger_system)'
+[15:28:01 INF] [033d89d0-3cac-4b53-9583-a372b46ae6ec] Route matched with {action = "Create", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Create(CreateAccountRequest) on controller AccountsController (Financial_ledger_system).
+[15:28:03 WRN] [033d89d0-3cac-4b53-9583-a372b46ae6ec] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[15:28:03 ERR] [033d89d0-3cac-4b53-9583-a372b46ae6ec] Failed executing DbCommand (106ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Boolean), @p6='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO accounts ("Id", "AccountType", "Balance", "CreatedAt", "Currency", "IsActive", "Name")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)
+RETURNING "RowVersion";
+[15:28:04 ERR] [033d89d0-3cac-4b53-9583-a372b46ae6ec] An exception occurred in the database while saving changes for context type 'LedgerDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23502: null value in column "RowVersion" of relation "accounts" violates not-null constraint
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23502
+    MessageText: null value in column "RowVersion" of relation "accounts" violates not-null constraint
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: accounts
+    ColumnName: RowVersion
+    File: execMain.c
+    Line: 1988
+    Routine: ExecConstraints
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23502: null value in column "RowVersion" of relation "accounts" violates not-null constraint
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23502
+    MessageText: null value in column "RowVersion" of relation "accounts" violates not-null constraint
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: accounts
+    ColumnName: RowVersion
+    File: execMain.c
+    Line: 1988
+    Routine: ExecConstraints
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[15:28:04 INF] [033d89d0-3cac-4b53-9583-a372b46ae6ec] Executed action AccountsController.Create (Financial_ledger_system) in 2812.1198ms
+[15:28:04 INF] [033d89d0-3cac-4b53-9583-a372b46ae6ec] Executed endpoint 'AccountsController.Create (Financial_ledger_system)'
+[15:28:04 ERR] [] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23502: null value in column "RowVersion" of relation "accounts" violates not-null constraint
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23502
+    MessageText: null value in column "RowVersion" of relation "accounts" violates not-null constraint
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: accounts
+    ColumnName: RowVersion
+    File: execMain.c
+    Line: 1988
+    Routine: ExecConstraints
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at UnitofWorkRepository.SaveChangesAsync(CancellationToken ct) in D:\Final_Projects\Financial_ledger_system\Infrastructure\Repositories\UnitofWorkRepository.cs:line 12
+   at AccountsController.Create(CreateAccountRequest request) in D:\Final_Projects\Financial_ledger_system\Controllers\AccountsController.cs:line 62
+   at lambda_method13(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at CorrelationId.CorrelationIdMiddleware.Invoke(HttpContext context, ICorrelationContextFactory correlationContextFactory)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[15:28:04 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/accounts - 500 null text/plain; charset=utf-8 3855.809ms
+[15:29:23 INF] [] Server msi:12432:87111c1f caught stopping signal...
+[15:29:23 INF] [] Application is shutting down...
+[15:29:23 INF] [] Server msi:12432:87111c1f All dispatchers stopped
+[15:29:23 INF] [] Server msi:12432:87111c1f successfully reported itself as stopped in 4.0327 ms
+[15:29:23 INF] [] Server msi:12432:87111c1f has been stopped in total 11.0608 ms
+[15:31:36 WRN] [] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[15:31:42 WRN] [] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[15:31:43 INF] [] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+[15:31:43 INF] [] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+[15:31:43 INF] [] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+[15:31:43 INF] [] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+[15:31:43 INF] [] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+[15:31:43 INF] [] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+[15:31:43 INF] [] Applying migration '20260501094636_FixRowVersion'.
+[15:31:43 INF] [] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE accounts DROP COLUMN "RowVersion";
+[15:31:43 INF] [] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260501094636_FixRowVersion', '10.0.7');
+[15:33:37 WRN] [] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[15:33:43 WRN] [] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[15:33:43 INF] [] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+[15:33:43 INF] [] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+[15:33:43 INF] [] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+[15:33:43 INF] [] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+[15:33:43 INF] [] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+[15:33:43 INF] [] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+[15:33:43 INF] [] Applying migration '20260501094837_RemoveRowVersion'.
+[15:33:43 INF] [] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260501094837_RemoveRowVersion', '10.0.7');
+[15:33:51 INF] [] Start installing Hangfire SQL objects...
+[15:33:51 INF] [] Hangfire SQL objects installed.
+[15:33:51 INF] [] Now listening on: http://localhost:5025
+[15:33:51 INF] [] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: ledgerdb, Schema: hangfire'
+[15:33:51 INF] [] Using the following options for PostgreSQL job storage:
+[15:33:51 INF] []     Queue poll interval: 00:00:15.
+[15:33:51 INF] []     Invisibility timeout: 00:30:00.
+[15:33:51 INF] []     Use sliding invisibility timeout: False.
+[15:33:51 INF] [] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+[15:33:51 INF] [] Application started. Press Ctrl+C to shut down.
+[15:33:51 INF] [] Hosting environment: Development
+[15:33:51 INF] [] Content root path: D:\Final_Projects\Financial_ledger_system
+[15:33:51 INF] [] Server msi:5732:c0973b95 successfully announced in 10.6625 ms
+[15:33:51 INF] [] Server msi:5732:c0973b95 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+[15:33:51 INF] [] Server msi:5732:c0973b95 all the dispatchers started
+[15:33:54 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/accounts - application/json 85
+[15:33:54 INF] [] No correlation ID was found in the request headers
+[15:33:55 WRN] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Failed to determine the https port for redirect.
+[15:33:55 INF] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Executing endpoint 'AccountsController.Create (Financial_ledger_system)'
+[15:33:55 INF] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Route matched with {action = "Create", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Create(CreateAccountRequest) on controller AccountsController (Financial_ledger_system).
+[15:33:56 WRN] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[15:33:57 INF] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Executed DbCommand (32ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Boolean), @p6='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO accounts ("Id", "AccountType", "Balance", "CreatedAt", "Currency", "IsActive", "Name")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+[15:33:57 INF] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Executing CreatedAtActionResult, writing value of type 'Account'.
+[15:33:57 INF] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Executed action AccountsController.Create (Financial_ledger_system) in 2319.8472ms
+[15:33:57 INF] [c60b473d-f2b6-4ed8-a9d7-686980e3d6cf] Executed endpoint 'AccountsController.Create (Financial_ledger_system)'
+[15:33:57 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/accounts - 201 null application/json; charset=utf-8 2779.6856ms
+[15:34:25 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/accounts - application/json 90
+[15:34:25 INF] [] No correlation ID was found in the request headers
+[15:34:25 INF] [1fdc5e11-7c5b-4617-abaf-1bc0b371b484] Executing endpoint 'AccountsController.Create (Financial_ledger_system)'
+[15:34:25 INF] [1fdc5e11-7c5b-4617-abaf-1bc0b371b484] Route matched with {action = "Create", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Create(CreateAccountRequest) on controller AccountsController (Financial_ledger_system).
+[15:34:25 INF] [1fdc5e11-7c5b-4617-abaf-1bc0b371b484] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Decimal), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Boolean), @p6='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO accounts ("Id", "AccountType", "Balance", "CreatedAt", "Currency", "IsActive", "Name")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+[15:34:26 INF] [1fdc5e11-7c5b-4617-abaf-1bc0b371b484] Executing CreatedAtActionResult, writing value of type 'Account'.
+[15:34:26 INF] [1fdc5e11-7c5b-4617-abaf-1bc0b371b484] Executed action AccountsController.Create (Financial_ledger_system) in 406.6476ms
+[15:34:26 INF] [1fdc5e11-7c5b-4617-abaf-1bc0b371b484] Executed endpoint 'AccountsController.Create (Financial_ledger_system)'
+[15:34:26 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/accounts - 201 null application/json; charset=utf-8 791.7911ms
+[15:34:46 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 527
+[15:34:46 INF] [] No correlation ID was found in the request headers
+[15:34:46 INF] [1c930b53-b352-4890-b04f-8c1e7c7fe020] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[15:34:46 INF] [1c930b53-b352-4890-b04f-8c1e7c7fe020] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[15:34:46 INF] [1c930b53-b352-4890-b04f-8c1e7c7fe020] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[15:34:46 INF] [1c930b53-b352-4890-b04f-8c1e7c7fe020] Executed action LedgerController.Post (Financial_ledger_system) in 104.3435ms
+[15:34:46 INF] [1c930b53-b352-4890-b04f-8c1e7c7fe020] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[15:34:46 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 400 null application/problem+json; charset=utf-8 228.7676ms
+[15:45:07 INF] [] Balance verification started at "2026-05-01T10:00:07.9863009Z"
+[15:45:08 INF] [] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[15:45:09 INF] [] Executed DbCommand (13ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[15:45:09 INF] [] Executed DbCommand (8ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[15:45:09 INF] [] Balance verification completed at "2026-05-01T10:00:09.3417790Z"
+[15:47:23 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts - application/json 90
+[15:47:23 INF] [] No correlation ID was found in the request headers
+[15:47:23 INF] [dbac51e2-4281-458b-8c81-b73f27bb1852] Executing endpoint 'AccountsController.GetAllAsync (Financial_ledger_system)'
+[15:47:23 INF] [dbac51e2-4281-458b-8c81-b73f27bb1852] Route matched with {action = "GetAll", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllAsync() on controller AccountsController (Financial_ledger_system).
+[15:47:23 INF] [dbac51e2-4281-458b-8c81-b73f27bb1852] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[15:47:23 INF] [dbac51e2-4281-458b-8c81-b73f27bb1852] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Account, Financial_ledger_system, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[15:47:23 INF] [dbac51e2-4281-458b-8c81-b73f27bb1852] Executed action AccountsController.GetAllAsync (Financial_ledger_system) in 94.3085ms
+[15:47:23 INF] [dbac51e2-4281-458b-8c81-b73f27bb1852] Executed endpoint 'AccountsController.GetAllAsync (Financial_ledger_system)'
+[15:47:23 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts - 200 null application/json; charset=utf-8 310.8158ms
+[15:48:29 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 553
+[15:48:29 INF] [] No correlation ID was found in the request headers
+[15:48:29 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[15:48:29 INF] [e04da501-a412-4390-95e0-83beccd6171e] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[15:48:29 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (7ms) [Parameters=[@key='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j0."Id", j0."CreatedAt", j0."Description", j0."IdempotencyKey", j0."Status", l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM (
+    SELECT j."Id", j."CreatedAt", j."Description", j."IdempotencyKey", j."Status"
+    FROM journal_entries AS j
+    WHERE j."IdempotencyKey" = @key
+    LIMIT 1
+) AS j0
+LEFT JOIN ledger_entries AS l ON j0."Id" = l."JournalEntryId1"
+ORDER BY j0."Id"
+[15:48:29 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (6ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM accounts AS a
+    WHERE a."Id" = @id)
+[15:48:29 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (8ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM accounts AS a
+    WHERE a."Id" = @id)
+[15:48:29 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (1ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[15:48:30 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (5ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[15:48:30 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (3ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[15:48:30 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed DbCommand (7ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[15:48:30 ERR] [e04da501-a412-4390-95e0-83beccd6171e] Failed executing DbCommand (14ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Decimal), @p3='?' (DbType = Guid), @p2='?' (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = Decimal), @p12='?' (DbType = DateTime), @p13='?', @p14='?', @p15='?' (DbType = Guid), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid), @p18='?' (DbType = Guid), @p19='?' (DbType = Decimal), @p20='?' (DbType = DateTime), @p21='?', @p22='?', @p23='?' (DbType = Guid), @p24='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE accounts SET "Balance" = @p0
+WHERE "Id" = @p1;
+UPDATE accounts SET "Balance" = @p2
+WHERE "Id" = @p3;
+INSERT INTO journal_entries ("Id", "CreatedAt", "Description", "IdempotencyKey", "Status")
+VALUES (@p4, @p5, @p6, @p7, @p8);
+INSERT INTO ledger_entries ("Id", "AccountId", "Amount", "CreatedAt", "Description", "Entrytype", "JournalEntryId", "JournalEntryId1")
+VALUES (@p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+INSERT INTO ledger_entries ("Id", "AccountId", "Amount", "CreatedAt", "Description", "Entrytype", "JournalEntryId", "JournalEntryId1")
+VALUES (@p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24);
+[15:48:30 ERR] [e04da501-a412-4390-95e0-83beccd6171e] An exception occurred in the database while saving changes for context type 'LedgerDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "ledger_entries" violates foreign key constraint "FK_ledger_entries_journal_entries_JournalEntryId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "ledger_entries" violates foreign key constraint "FK_ledger_entries_journal_entries_JournalEntryId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: ledger_entries
+    ConstraintName: FK_ledger_entries_journal_entries_JournalEntryId
+    File: ri_triggers.c
+    Line: 2610
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "ledger_entries" violates foreign key constraint "FK_ledger_entries_journal_entries_JournalEntryId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "ledger_entries" violates foreign key constraint "FK_ledger_entries_journal_entries_JournalEntryId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: ledger_entries
+    ConstraintName: FK_ledger_entries_journal_entries_JournalEntryId
+    File: ri_triggers.c
+    Line: 2610
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[15:48:30 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed action LedgerController.Post (Financial_ledger_system) in 1120.5386ms
+[15:48:31 INF] [e04da501-a412-4390-95e0-83beccd6171e] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[15:48:31 ERR] [] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "ledger_entries" violates foreign key constraint "FK_ledger_entries_journal_entries_JournalEntryId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "ledger_entries" violates foreign key constraint "FK_ledger_entries_journal_entries_JournalEntryId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: ledger_entries
+    ConstraintName: FK_ledger_entries_journal_entries_JournalEntryId
+    File: ri_triggers.c
+    Line: 2610
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at UnitofWorkRepository.SaveChangesAsync(CancellationToken ct) in D:\Final_Projects\Financial_ledger_system\Infrastructure\Repositories\UnitofWorkRepository.cs:line 12
+   at JournalEntryService.PostAsync(String descripition, String idempotencykey, List`1 requests, CancellationToken ct) in D:\Final_Projects\Financial_ledger_system\Applications\Services\JournalEntryService.cs:line 58
+   at JournalEntryService.PostAsync(String descripition, String idempotencykey, List`1 requests, CancellationToken ct) in D:\Final_Projects\Financial_ledger_system\Applications\Services\JournalEntryService.cs:line 71
+   at LedgerController.Post(PostJournalEntryDto dto, CancellationToken ct) in D:\Final_Projects\Financial_ledger_system\Controllers\LedgerController.cs:line 41
+   at lambda_method104(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at CorrelationId.CorrelationIdMiddleware.Invoke(HttpContext context, ICorrelationContextFactory correlationContextFactory)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[15:48:31 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 500 null text/plain; charset=utf-8 2085.316ms
+[15:50:37 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - null null
+[15:50:37 INF] [] No correlation ID was found in the request headers
+[15:50:37 INF] [573438e5-3d4d-425c-8b06-7f31b08afbfb] Executing endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[15:50:37 INF] [573438e5-3d4d-425c-8b06-7f31b08afbfb] Route matched with {action = "GetByBalanceId", controller = "Balance"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetByBalanceId(System.Guid, System.Threading.CancellationToken) on controller BalanceController (Financial_ledger_system).
+[15:50:37 INF] [573438e5-3d4d-425c-8b06-7f31b08afbfb] Executed DbCommand (8ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[15:50:37 INF] [573438e5-3d4d-425c-8b06-7f31b08afbfb] Executing OkObjectResult, writing value of type 'AccountBalanceDto'.
+[15:50:38 INF] [573438e5-3d4d-425c-8b06-7f31b08afbfb] Executed action BalanceController.GetByBalanceId (Financial_ledger_system) in 131.3353ms
+[15:50:38 INF] [573438e5-3d4d-425c-8b06-7f31b08afbfb] Executed endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[15:50:38 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - 200 null application/json; charset=utf-8 569.7702ms
+[15:51:02 INF] [] Server msi:5732:c0973b95 caught stopping signal...
+[15:51:02 INF] [] Application is shutting down...
+[15:51:02 INF] [] Server msi:5732:c0973b95 All dispatchers stopped
+[15:51:02 INF] [] Server msi:5732:c0973b95 successfully reported itself as stopped in 5.4974 ms
+[15:51:02 INF] [] Server msi:5732:c0973b95 has been stopped in total 22.4773 ms
+[18:00:03 INF] [] Start installing Hangfire SQL objects...
+[18:00:03 INF] [] Hangfire SQL objects installed.
+[18:00:04 INF] [] Now listening on: http://localhost:5025
+[18:00:04 INF] [] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: ledgerdb, Schema: hangfire'
+[18:00:04 INF] [] Using the following options for PostgreSQL job storage:
+[18:00:04 INF] []     Queue poll interval: 00:00:15.
+[18:00:04 INF] []     Invisibility timeout: 00:30:00.
+[18:00:04 INF] []     Use sliding invisibility timeout: False.
+[18:00:04 INF] [] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+[18:00:04 INF] [] Application started. Press Ctrl+C to shut down.
+[18:00:04 INF] [] Hosting environment: Development
+[18:00:04 INF] [] Content root path: D:\Final_Projects\Financial_ledger_system
+[18:00:04 INF] [] Server msi:11224:280cf95f successfully announced in 25.5475 ms
+[18:00:04 INF] [] Server msi:11224:280cf95f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+[18:00:04 INF] [] Server msi:11224:280cf95f all the dispatchers started
+[18:00:05 INF] [] Balance verification started at "2026-05-01T12:15:05.9518461Z"
+[18:00:07 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 553
+[18:00:07 INF] [] No correlation ID was found in the request headers
+[18:00:07 WRN] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Failed to determine the https port for redirect.
+[18:00:07 WRN] [] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[18:00:07 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:00:07 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[18:00:08 INF] [] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (18ms) [Parameters=[@key='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j0."Id", j0."CreatedAt", j0."Description", j0."IdempotencyKey", j0."Status", l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM (
+    SELECT j."Id", j."CreatedAt", j."Description", j."IdempotencyKey", j."Status"
+    FROM journal_entries AS j
+    WHERE j."IdempotencyKey" = @key
+    LIMIT 1
+) AS j0
+LEFT JOIN ledger_entries AS l ON j0."Id" = l."JournalEntryId1"
+ORDER BY j0."Id"
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (7ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM accounts AS a
+    WHERE a."Id" = @id)
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (6ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM accounts AS a
+    WHERE a."Id" = @id)
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (5ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (5ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[18:00:08 INF] [] Executed DbCommand (12ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (5ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[18:00:08 INF] [] Executed DbCommand (13ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[18:00:08 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (5ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+WHERE a."Id" = @id
+LIMIT 1
+[18:00:08 INF] [] Balance verification completed at "2026-05-01T12:15:08.6370668Z"
+[18:00:09 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed DbCommand (16ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Decimal), @p3='?' (DbType = Guid), @p2='?' (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = Decimal), @p12='?' (DbType = DateTime), @p13='?', @p14='?', @p15='?' (DbType = Guid), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid), @p18='?' (DbType = Guid), @p19='?' (DbType = Decimal), @p20='?' (DbType = DateTime), @p21='?', @p22='?', @p23='?' (DbType = Guid), @p24='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE accounts SET "Balance" = @p0
+WHERE "Id" = @p1;
+UPDATE accounts SET "Balance" = @p2
+WHERE "Id" = @p3;
+INSERT INTO journal_entries ("Id", "CreatedAt", "Description", "IdempotencyKey", "Status")
+VALUES (@p4, @p5, @p6, @p7, @p8);
+INSERT INTO ledger_entries ("Id", "AccountId", "Amount", "CreatedAt", "Description", "Entrytype", "JournalEntryId", "JournalEntryId1")
+VALUES (@p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+INSERT INTO ledger_entries ("Id", "AccountId", "Amount", "CreatedAt", "Description", "Entrytype", "JournalEntryId", "JournalEntryId1")
+VALUES (@p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24);
+[18:00:09 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executing CreatedAtActionResult, writing value of type 'JournalEntry'.
+[18:00:09 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed action LedgerController.Post (Financial_ledger_system) in 1960.5751ms
+[18:00:09 INF] [0a0f3b81-34c5-4a93-89f7-7fe2bb8c58f7] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:00:09 ERR] [] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.CreatedAtActionResult.OnFormatting(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor.ExecuteAsyncCore(ActionContext context, ObjectResult result, Type objectType, Object value)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor.ExecuteAsync(ActionContext context, ObjectResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at CorrelationId.CorrelationIdMiddleware.Invoke(HttpContext context, ICorrelationContextFactory correlationContextFactory)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[18:00:09 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 500 null text/plain; charset=utf-8 2402.3316ms
+[18:00:18 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 553
+[18:00:18 INF] [] No correlation ID was found in the request headers
+[18:00:18 INF] [23005caf-11a8-46d8-bbf3-862c6d5694f5] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:00:18 INF] [23005caf-11a8-46d8-bbf3-862c6d5694f5] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[18:00:19 INF] [23005caf-11a8-46d8-bbf3-862c6d5694f5] Executed DbCommand (7ms) [Parameters=[@key='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j0."Id", j0."CreatedAt", j0."Description", j0."IdempotencyKey", j0."Status", l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM (
+    SELECT j."Id", j."CreatedAt", j."Description", j."IdempotencyKey", j."Status"
+    FROM journal_entries AS j
+    WHERE j."IdempotencyKey" = @key
+    LIMIT 1
+) AS j0
+LEFT JOIN ledger_entries AS l ON j0."Id" = l."JournalEntryId1"
+ORDER BY j0."Id"
+[18:00:19 INF] [23005caf-11a8-46d8-bbf3-862c6d5694f5] Executing CreatedAtActionResult, writing value of type 'JournalEntry'.
+[18:00:19 INF] [23005caf-11a8-46d8-bbf3-862c6d5694f5] Executed action LedgerController.Post (Financial_ledger_system) in 373.1176ms
+[18:00:19 INF] [23005caf-11a8-46d8-bbf3-862c6d5694f5] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:00:19 ERR] [] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.CreatedAtActionResult.OnFormatting(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor.ExecuteAsyncCore(ActionContext context, ObjectResult result, Type objectType, Object value)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor.ExecuteAsync(ActionContext context, ObjectResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at CorrelationId.CorrelationIdMiddleware.Invoke(HttpContext context, ICorrelationContextFactory correlationContextFactory)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[18:00:19 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 500 null text/plain; charset=utf-8 614.0696ms
+[18:01:29 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 553
+[18:01:29 INF] [] No correlation ID was found in the request headers
+[18:01:29 INF] [7d3bf004-6c9c-404c-926c-38312f452682] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:01:29 INF] [7d3bf004-6c9c-404c-926c-38312f452682] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[18:01:29 INF] [7d3bf004-6c9c-404c-926c-38312f452682] Executed DbCommand (8ms) [Parameters=[@key='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j0."Id", j0."CreatedAt", j0."Description", j0."IdempotencyKey", j0."Status", l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM (
+    SELECT j."Id", j."CreatedAt", j."Description", j."IdempotencyKey", j."Status"
+    FROM journal_entries AS j
+    WHERE j."IdempotencyKey" = @key
+    LIMIT 1
+) AS j0
+LEFT JOIN ledger_entries AS l ON j0."Id" = l."JournalEntryId1"
+ORDER BY j0."Id"
+[18:01:29 INF] [7d3bf004-6c9c-404c-926c-38312f452682] Executing CreatedAtActionResult, writing value of type 'JournalEntry'.
+[18:01:29 INF] [7d3bf004-6c9c-404c-926c-38312f452682] Executed action LedgerController.Post (Financial_ledger_system) in 41.7512ms
+[18:01:29 INF] [7d3bf004-6c9c-404c-926c-38312f452682] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:01:29 ERR] [] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.CreatedAtActionResult.OnFormatting(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor.ExecuteAsyncCore(ActionContext context, ObjectResult result, Type objectType, Object value)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor.ExecuteAsync(ActionContext context, ObjectResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at CorrelationId.CorrelationIdMiddleware.Invoke(HttpContext context, ICorrelationContextFactory correlationContextFactory)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[18:01:29 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 500 null text/plain; charset=utf-8 254.097ms
+[18:01:34 INF] [] Server msi:11224:280cf95f caught stopping signal...
+[18:01:34 INF] [] Application is shutting down...
+[18:01:34 INF] [] Server msi:11224:280cf95f All dispatchers stopped
+[18:01:34 INF] [] Server msi:11224:280cf95f successfully reported itself as stopped in 6.281 ms
+[18:01:34 INF] [] Server msi:11224:280cf95f has been stopped in total 28.6059 ms
+[18:01:56 INF] [] Start installing Hangfire SQL objects...
+[18:01:56 INF] [] Hangfire SQL objects installed.
+[18:01:56 INF] [] Now listening on: http://localhost:5025
+[18:01:56 INF] [] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: ledgerdb, Schema: hangfire'
+[18:01:56 INF] [] Using the following options for PostgreSQL job storage:
+[18:01:56 INF] []     Queue poll interval: 00:00:15.
+[18:01:56 INF] []     Invisibility timeout: 00:30:00.
+[18:01:56 INF] []     Use sliding invisibility timeout: False.
+[18:01:56 INF] [] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+[18:01:56 INF] [] Application started. Press Ctrl+C to shut down.
+[18:01:56 INF] [] Hosting environment: Development
+[18:01:56 INF] [] Content root path: D:\Final_Projects\Financial_ledger_system
+[18:01:56 INF] [] Server msi:21040:b2f9f1ca successfully announced in 8.9741 ms
+[18:01:56 INF] [] Server msi:21040:b2f9f1ca is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+[18:01:56 INF] [] Server msi:21040:b2f9f1ca all the dispatchers started
+[18:01:58 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 553
+[18:01:58 INF] [] No correlation ID was found in the request headers
+[18:01:58 WRN] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Failed to determine the https port for redirect.
+[18:01:58 INF] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:01:58 INF] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[18:01:59 WRN] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] The foreign key property 'LedgerEntry.JournalEntryId1' was created in shadow state because a conflicting property with the simple name 'JournalEntryId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+[18:02:01 INF] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Executed DbCommand (66ms) [Parameters=[@key='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j0."Id", j0."CreatedAt", j0."Description", j0."IdempotencyKey", j0."Status", l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM (
+    SELECT j."Id", j."CreatedAt", j."Description", j."IdempotencyKey", j."Status"
+    FROM journal_entries AS j
+    WHERE j."IdempotencyKey" = @key
+    LIMIT 1
+) AS j0
+LEFT JOIN ledger_entries AS l ON j0."Id" = l."JournalEntryId1"
+ORDER BY j0."Id"
+[18:02:02 INF] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Executing CreatedResult, writing value of type 'JournalEntry'.
+[18:02:02 INF] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Executed action LedgerController.Post (Financial_ledger_system) in 3794.1292ms
+[18:02:02 INF] [6efc9f5b-b73c-4ddf-b070-f760cda74da1] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:02:02 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 201 null application/json; charset=utf-8 4153.3695ms
+[18:02:44 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - null null
+[18:02:44 INF] [] No correlation ID was found in the request headers
+[18:02:44 INF] [39687ad9-0226-4834-9bd4-5648fe339ad9] Executing endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[18:02:44 INF] [39687ad9-0226-4834-9bd4-5648fe339ad9] Route matched with {action = "GetByBalanceId", controller = "Balance"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetByBalanceId(System.Guid, System.Threading.CancellationToken) on controller BalanceController (Financial_ledger_system).
+[18:02:44 INF] [39687ad9-0226-4834-9bd4-5648fe339ad9] Executed DbCommand (9ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[18:02:44 INF] [39687ad9-0226-4834-9bd4-5648fe339ad9] Executing OkObjectResult, writing value of type 'AccountBalanceDto'.
+[18:02:44 INF] [39687ad9-0226-4834-9bd4-5648fe339ad9] Executed action BalanceController.GetByBalanceId (Financial_ledger_system) in 133.2773ms
+[18:02:44 INF] [39687ad9-0226-4834-9bd4-5648fe339ad9] Executed endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[18:02:44 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - 200 null application/json; charset=utf-8 269.869ms
+[18:10:49 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - null null
+[18:10:49 INF] [] No correlation ID was found in the request headers
+[18:10:49 INF] [c7ba10a2-16a1-41fb-a710-ec27fa67f558] Executing endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[18:10:49 INF] [c7ba10a2-16a1-41fb-a710-ec27fa67f558] Route matched with {action = "GetByBalanceId", controller = "Balance"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetByBalanceId(System.Guid, System.Threading.CancellationToken) on controller BalanceController (Financial_ledger_system).
+[18:10:50 INF] [c7ba10a2-16a1-41fb-a710-ec27fa67f558] Executed DbCommand (6ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[18:10:50 INF] [c7ba10a2-16a1-41fb-a710-ec27fa67f558] Executing OkObjectResult, writing value of type 'AccountBalanceDto'.
+[18:10:50 INF] [c7ba10a2-16a1-41fb-a710-ec27fa67f558] Executed action BalanceController.GetByBalanceId (Financial_ledger_system) in 332.4789ms
+[18:10:50 INF] [c7ba10a2-16a1-41fb-a710-ec27fa67f558] Executed endpoint 'BalanceController.GetByBalanceId (Financial_ledger_system)'
+[18:10:50 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/balance/b348e9ba-7b27-4db5-9cdb-8a1834b265e7 - 200 null application/json; charset=utf-8 489.0271ms
+[18:11:08 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 90
+[18:11:08 INF] [] No correlation ID was found in the request headers
+[18:11:08 INF] [ad40938f-f514-4963-848e-8448d76122e5] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:11:08 INF] [ad40938f-f514-4963-848e-8448d76122e5] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[18:11:08 INF] [ad40938f-f514-4963-848e-8448d76122e5] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[18:11:08 INF] [ad40938f-f514-4963-848e-8448d76122e5] Executed action LedgerController.Post (Financial_ledger_system) in 55.3052ms
+[18:11:08 INF] [ad40938f-f514-4963-848e-8448d76122e5] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:11:08 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 400 null application/problem+json; charset=utf-8 295.1167ms
+[18:16:22 INF] [] Request starting HTTP/1.1 POST http://localhost:5025/api/ledger - application/json 130
+[18:16:22 INF] [] No correlation ID was found in the request headers
+[18:16:22 INF] [29cb23d4-ba67-40f3-9faf-a8312a7302f4] Executing endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:16:22 INF] [29cb23d4-ba67-40f3-9faf-a8312a7302f4] Route matched with {action = "Post", controller = "Ledger"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Post(PostJournalEntryDto, System.Threading.CancellationToken) on controller LedgerController (Financial_ledger_system).
+[18:16:22 INF] [29cb23d4-ba67-40f3-9faf-a8312a7302f4] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[18:16:22 INF] [29cb23d4-ba67-40f3-9faf-a8312a7302f4] Executed action LedgerController.Post (Financial_ledger_system) in 23.3753ms
+[18:16:22 INF] [29cb23d4-ba67-40f3-9faf-a8312a7302f4] Executed endpoint 'LedgerController.Post (Financial_ledger_system)'
+[18:16:22 INF] [] Request finished HTTP/1.1 POST http://localhost:5025/api/ledger - 400 null application/problem+json; charset=utf-8 154.5522ms
+[18:16:40 INF] [] Request starting HTTP/1.1 GET http://localhost:5025/api/accounts - null null
+[18:16:40 INF] [] No correlation ID was found in the request headers
+[18:16:40 INF] [0249a0ff-a38f-417a-8e2b-6a18a8177cc6] Executing endpoint 'AccountsController.GetAllAsync (Financial_ledger_system)'
+[18:16:40 INF] [0249a0ff-a38f-417a-8e2b-6a18a8177cc6] Route matched with {action = "GetAll", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllAsync() on controller AccountsController (Financial_ledger_system).
+[18:16:40 INF] [0249a0ff-a38f-417a-8e2b-6a18a8177cc6] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[18:16:40 INF] [0249a0ff-a38f-417a-8e2b-6a18a8177cc6] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Account, Financial_ledger_system, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[18:16:40 INF] [0249a0ff-a38f-417a-8e2b-6a18a8177cc6] Executed action AccountsController.GetAllAsync (Financial_ledger_system) in 95.0964ms
+[18:16:40 INF] [0249a0ff-a38f-417a-8e2b-6a18a8177cc6] Executed endpoint 'AccountsController.GetAllAsync (Financial_ledger_system)'
+[18:16:40 INF] [] Request finished HTTP/1.1 GET http://localhost:5025/api/accounts - 200 null application/json; charset=utf-8 225.8805ms
+[18:45:01 INF] [] Balance verification started at "2026-05-01T13:00:01.1923781Z"
+[18:45:01 INF] [] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccountType", a."Balance", a."CreatedAt", a."Currency", a."IsActive", a."Name"
+FROM accounts AS a
+[18:45:01 INF] [] Executed DbCommand (19ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[18:45:01 INF] [] Executed DbCommand (29ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."Id", l."AccountId", l."Amount", l."CreatedAt", l."Description", l."Entrytype", l."JournalEntryId", l."JournalEntryId1"
+FROM journal_entries AS j
+INNER JOIN ledger_entries AS l ON j."Id" = l."JournalEntryId1"
+WHERE l."AccountId" = @id
+[18:45:01 INF] [] Balance verification completed at "2026-05-01T13:00:01.3398476Z"
+[18:55:06 INF] [] Server msi:21040:b2f9f1ca caught stopping signal...
+[18:55:06 INF] [] Application is shutting down...
+[18:55:06 INF] [] Server msi:21040:b2f9f1ca All dispatchers stopped
+[18:55:06 INF] [] Server msi:21040:b2f9f1ca successfully reported itself as stopped in 5.4064 ms
+[18:55:06 INF] [] Server msi:21040:b2f9f1ca has been stopped in total 50.4796 ms

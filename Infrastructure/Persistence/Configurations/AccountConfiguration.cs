@@ -16,9 +16,10 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .IsRequired()
             .HasMaxLength(3);
             builder.Property(x => x.AccountType).HasConversion<string>();
-            builder.Property(x => x.Balance).HasColumnName("decimal(18,4)");
+            builder.Property(x => x.Balance).HasColumnType("decimal(18,4)");
             builder.Property(x => x.CreatedAt).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();
+
 
             
 
