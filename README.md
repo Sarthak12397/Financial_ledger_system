@@ -13,11 +13,6 @@ immutability and recomputing balances from source-of-truth entries.
 
 ## The Risk This System Eliminates
 
-Financial systems that rely on mutable balances risk silent corruption.
-Once balance drift occurs, it cannot be reliably reconstructed.
-This system eliminates that class of failure entirely by enforcing
-immutability and recomputing balances from source-of-truth entries.
-
 - **Mutable balances** — a single incorrect UPDATE corrupts history permanently
 - **Duplicate processing** — a retry charges a customer twice, silently
 - **Balance drift** — stored balances diverge from actual history undetected
