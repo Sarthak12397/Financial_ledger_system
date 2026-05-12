@@ -1,8 +1,9 @@
 # Financial Ledger Engine
 
-A backend API that enforces double-entry bookkeeping at the system level —
-every debit has a credit, balances are computed from immutable records,
-and money can never appear from nowhere.
+Financial systems that rely on mutable balances risk silent corruption.
+Once balance drift occurs, it cannot be reliably reconstructed.
+This system eliminates that class of failure entirely by enforcing
+immutability and recomputing balances from source-of-truth entries.
 
 > Built with .NET 10 · PostgreSQL · Hangfire · Docker · Serilog
 
@@ -104,6 +105,14 @@ GET /api/balance/{accountId}
 | No duplicate requests | Unique index on IdempotencyKey |
 
 
+## Testing Strategy
+
+- **Unit tests** — invariant enforcement (debits = credits, immutability rules, guard clauses)
+- **Integration tests** — journal posting, balance computation, idempotency behavior
+- **Edge cases** — duplicate idempotency keys, invalid amounts, currency mismatches
+- **7 passing xUnit tests** proving mathematical correctness of the domain layer
+
+
 ## Architecture Diagram
 
 <img width="5553" height="1956" alt="mermaid-diagram (6)" src="https://github.com/user-attachments/assets/5a9dc270-7d62-4803-9710-06369ced4a5a" />
@@ -169,16 +178,14 @@ Hangfire dashboard: http://localhost:5025/hangfire
 | Correlation IDs | Full traceability across requests and retries |
 | Hangfire | Scheduled balance verification survives restarts |
 
+## Scaling & Future Hardening
 
-## What I'd Improve
-
-| Improvement | Reason | Impact | Priority |
-|-------------|--------|--------|----------|
-| Composite idempotency key (ClientId + Key) | Prevent cross-client key collisions | High | High |
-| Reversal journal entries | Correct mistakes without mutating history | High | High |
-| JWT Authentication | Secure endpoints — only authenticated users post entries | High | High |
-| Pagination on ledger queries | GetByAccountIdAsync unusable at scale | Medium | Medium |
-| OpenTelemetry | Distributed tracing beyond single-service correlation IDs | Medium | Medium |
-| Rate limiting | Prevent API abuse | High | High |
-
+| Enhancement | Purpose |
+|-------------|---------|
+| Composite idempotency key (ClientId + Key) | Multi-tenant isolation — prevent cross-client key collisions |
+| Reversal journal entries | Correction mechanism — fix mistakes without mutating history |
+| JWT Authentication | Endpoint security — only authenticated systems post entries |
+| Pagination for high-volume ledger queries | Scale optimization for accounts with thousands of entries |
+| OpenTelemetry | Distributed tracing across service boundaries |
+| Rate limiting | Protection against API abuse and resource exhaustion |
 
