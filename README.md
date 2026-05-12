@@ -7,6 +7,14 @@ immutability and recomputing balances from source-of-truth entries.
 
 > Built with .NET 10 · PostgreSQL · Hangfire · Docker · Serilog
 
+## Financial Backend System Suite
+
+Part of a production-style fintech backend portfolio:
+
+- Payment Processing System — transaction execution & retry orchestration
+- Financial Ledger Engine — immutable double-entry source of truth
+- Reconciliation Engine — cross-system consistency verification
+
 > See also: [Payment Processing System](https://github.com/Sarthak12397/TransactionalBusinessAPI)
 > — the write-side that processes the transactions this system records.
 
