@@ -11,14 +11,16 @@ immutability and recomputing balances from source-of-truth entries.
 > — the write-side that processes the transactions this system records.
 
 
-## Problem
+## The Risk This System Eliminates
 
-Without a structured ledger system, financial records become unreliable:
+Financial systems that rely on mutable balances risk silent corruption.
+Once balance drift occurs, it cannot be reliably reconstructed.
+This system eliminates that class of failure entirely by enforcing
+immutability and recomputing balances from source-of-truth entries.
 
-- Money appears or disappears due to unchecked balance mutations
-- No audit trail — records can be edited or deleted silently
-- Duplicate requests create duplicate transactions
-- Balance drift goes undetected until an auditor catches it
+- **Mutable balances** — a single incorrect UPDATE corrupts history permanently
+- **Duplicate processing** — a retry charges a customer twice, silently
+- **Balance drift** — stored balances diverge from actual history undetected
 
 ## Solution
 
